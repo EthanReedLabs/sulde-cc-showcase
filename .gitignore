@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node/Python (未来加）
+node_modules/
+__pycache__/
+*.pyc
+
+# Env
+.env
+.env.local
