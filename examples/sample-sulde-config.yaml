@@ -1,0 +1,111 @@
+# .sulde-config.yaml · sulde-cc 项目 meta 配置（L1 层）
+# 放在项目根目录 · 每次 Claude Code 会话启动时 hook 会读取
+
+# ========================================
+# 项目基本信息
+# ========================================
+project:
+  name: my-mobile-app
+  version: "1.0.0"
+  description: "Cross-platform mobile app with sulde-cc"
+
+# ========================================
+# Frontend 定义 · L2 层
+# ========================================
+frontends:
+  - name: android
+    path: android/
+    stack: kotlin-compose
+    workspace: android/.ai-workspace/
+    build_tool: gradle
+
+  - name: ios
+    path: ios/
+    stack: swift-swiftui
+    workspace: ios/.ai-workspace/
+    build_tool: xcodebuild
+    os_requirement: macOS
+
+  - name: flutter
+    path: flutter/
+    stack: dart-widgets
+    workspace: flutter/.ai-workspace/
+    build_tool: flutter
+
+  - name: harmony
+    path: harmony/
+    stack: arkts-arkui
+    workspace: harmony/.ai-workspace/
+    build_tool: hvigorw
+
+# ========================================
+# 团队角色 · L1 层
+# ========================================
+team:
+  coordinator:
+    identity: coordinator
+    git_alias: as-coordinator
+    email: coordinator@team.local
+
+  devs:
+    - identity: android-alice
+      git_alias: as-android
+      email: android@team.local
+      frontends: [android]
+
+    - identity: ios-bob
+      git_alias: as-ios
+      email: ios@team.local
+      frontends: [ios]
+
+    - identity: flutter-charlie
+      git_alias: as-flutter
+      email: flutter@team.local
+      frontends: [flutter]
+
+# ========================================
+# 设计源 · L4 层
+# ========================================
+design_truth:
+  source: pencil          # pencil / figma / sketch / custom
+  location: docs-hub/design-truth/
+  update_workflow: coordinator/update-design
+
+# ========================================
+# 强制级别 · Hooks 配置
+# ========================================
+enforcement:
+  level: balanced         # strict / balanced / lenient
+  grace_period_days: 7    # 新项目 7 天 grace 期
+
+  # 各 hook 单独配置（可选 · 默认继承 level）
+  hooks:
+    task_md_baseline: enforced
+    handoff_5_section: enforced
+    subdir_cd_block: enforced
+    git_commit_alias: warn        # 警告不阻塞
+    perf_gate: enforced
+    ai_traces_check: enforced
+
+# ========================================
+# 项目文档 hub · L3 层
+# ========================================
+docs_hub:
+  location: docs-hub/
+  layers:
+    - methodology         # 方法论
+    - adr                 # ADR 记录 · L7 层
+    - kb/bugbook          # Layer 1 反模式清单
+    - kb/case-studies     # Layer 2 案例研究
+    - design-truth        # L4 层
+    - postmortem          # 事后复盘
+
+# ========================================
+# CI/CD 集成
+# ========================================
+ci:
+  git_pre_commit:
+    - check_branch_protect     # 禁止直接推 main
+    - check_branch_format      # 分支名规范
+    - check_commit_alias       # 必须用别名
+    - check_ai_traces          # 检查 AI 痕迹

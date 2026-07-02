@@ -144,6 +144,12 @@ sulde-cc 在多个真实项目上跑通过：
 - [docs/METHODOLOGY.md](docs/METHODOLOGY.md) · 7 层金字塔方法论
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · 架构 + 组件说明
 - [docs/FAQ.md](docs/FAQ.md) · 常见问题
+- [examples/](examples/) · **task-md · handoff · config · ADR 实际结构示例**（脱敏）
+- [screenshots/](screenshots/) · 使用截图（补充中）
+
+## 🎥 演示视频
+
+> 5 分钟 demo 视频：**待补充**（计划：sulde-init wizard → 项目结构 → coordinator 派单 → dev 执行 → handoff → hooks 拦截演示）
 
 ---
 
